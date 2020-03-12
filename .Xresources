@@ -38,7 +38,7 @@
 *.color15: #fdf6e3
 
 !! URxvt Appearance
-URxvt*font: xft:Source Code Pro Medium:size=10
+URxvt*font: xft:Noto Sans Mono:style=Regular:size=11
 URxvt.letterSpace: 0
 URxvt.lineSpace: 0
 URxvt.geometry: 240x100
@@ -53,7 +53,7 @@ URxvt.depth: 32
 URxvt.iso14755: false
 
 !! rofi Appearance
-rofi*font: Source Code Pro Medium 14
+rofi*font: Noto Sans Mono Regular 14
 rofi.color-enabled: true
 rofi.color-window: #2e3440, #2e3440, #2e3440
 rofi.color-normal: #2e3440, #d8dee9, #2e3440, #2e3440, #bf616a
