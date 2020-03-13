@@ -17,342 +17,197 @@
 ;==========================================================
 
 [colors]
-;background = ${xrdb:color0:#222}
-background = #222
-background-alt = #444
-;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
-foreground-alt = #555
-primary = #ffb52a
-secondary = #e60053
-alert = #bd2c40
+background = #8c461320
+foreground = #f5f5f5
 
-[bar/example]
-;monitor = ${env:MONITOR:HDMI-1}
+white = #60de8c98
+
+;ac
+pink = #d26273
+;bi be
+light = #dc6a2939
+;mb mgf
+dark = #461320
+;mf
+yellow = #fdd835
+
+[bar/main]
 width = 100%
-height = 27
-;offset-x = 1%
-;offset-y = 1%
-fixed-center = false
+height = 30
+
+fixed-center = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 3
-line-color = #f00
+font-0 = NotoSans:size=10;
+font-1 = FontAwesome:style=Regular:size=8;
 
-border-color = #00000000
+enable-ipc = true
 
-padding-left = 0
-padding-right = 2
+modules-center = weather
+modules-right = pulseaudio updates brightness keyboard clock
+modules-left = ip network cpu temperature storage
 
-module-margin-left = 1
-module-margin-right = 2
-
-font-0 = fixed:pixelsize=10;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
-
-modules-left = bspwm i3
-modules-center = mpd
-modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu wlan eth temperature date powermenu
-
-tray-position = right
-tray-padding = 2
-;tray-background = #0063ff
-
-;wm-restack = bspwm
-;wm-restack = i3
-
-;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
-
-cursor-click = pointer
-cursor-scroll = ns-resize
-
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:30:...%
-
-[module/xkeyboard]
-type = internal/xkeyboard
-blacklist-0 = num lock
-
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
-
-label-layout = %layout%
-label-layout-underline = ${colors.secondary}
-
-label-indicator-padding = 2
-label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
-
-[module/filesystem]
-type = internal/fs
-interval = 25
-
-mount-0 = /
-
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
-
-[module/bspwm]
-type = internal/bspwm
-
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
-
-label-occupied = %index%
-label-occupied-padding = 2
-
-label-urgent = %index%!
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
-
-label-empty = %index%
-label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 2
-
-; Separator in between workspaces
-; label-separator = |
-
-[module/i3]
-type = internal/i3
-format = <label-state> <label-mode>
-index-sort = true
-wrapping-scroll = false
-
-; Only show workspaces on the same output as the bar
-;pin-workspaces = true
-
-label-mode-padding = 2
-label-mode-foreground = #000
-label-mode-background = ${colors.primary}
-
-; focused = Active workspace on focused monitor
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
-
-; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
-label-unfocused-padding = 2
-
-; visible = Active workspace on unfocused monitor
-label-visible = %index%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
-
-; urgent = Workspace with urgency hint set
-label-urgent = %index%
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
-
-; Separator in between workspaces
-; label-separator = |
-
-
-[module/mpd]
-type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
-
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
-
-label-song-maxlen = 25
-label-song-ellipsis = true
-
-[module/xbacklight]
-type = internal/xbacklight
-
-format = <label> <bar>
-label = BL
-
-bar-width = 10
-bar-indicator = |
-bar-indicator-foreground = #fff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
-
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
-
-[module/cpu]
-type = internal/cpu
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
-label = %percentage:2%%
-
-[module/memory]
-type = internal/memory
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
-label = %percentage_used%%
-
-[module/wlan]
-type = internal/network
-interface = net1
-interval = 3.0
-
-format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
-label-connected = %essid%
-
-format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground-alt}
-
-[module/eth]
-type = internal/network
-interface = enp24s0
-interval = 3.0
-
-format-connected-underline = #55aa55
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
-
-format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
-
-[module/date]
+[module/clock]
 type = internal/date
-interval = 5
 
-date =
-date-alt = " %Y-%m-%d"
+interval = 1.0
+
+date
+date-alt = %d/%m/%Y %
 
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
+label = %date%%time%
 
-label = %date% %time%
+format = <label>
+format-background = ${colors.light}
+format-padding = 10
+format-margin = 5
+
+[module/network]
+type = internal/network
+interface = enp24s0
+
+accumulate-stats = true
+unknown-as-up = true
+
+label-connected =  %downspeed%    %upspeed%
+label-disconnected = "N/A"
+
+format-connected = <label-connected>
+format-connected-background = ${colors.light}
+format-connected-padding = 10
+format-connected-margin = 5
+
+format-disconnected = <label-disconnected>
+format-disconnected-background = ${colors.light}
+format-disconnected-padding = 10
+format-disconnected-margin = 5
+
+[module/cpu]
+type = internal/cpu
+
+interval = 0.5
+
+label =  %percentage%%
+
+format = <label>
+format-background = ${colors.light}
+format-padding = 10
+format-margin = 5
+
+[module/temperature]
+type = internal/temperature
+
+interval = 0.5
+
+hwmon-path = /sys/devices/platform/nct6775.2592/hwmon/hwmon2/temp2_input
+
+label =  %temperature-c%
+format = <label>
+format-background = ${colors.light}
+format-padding = 10
+format-margin = 5
+
+[module/updates]
+type = custom/script
+exec = ~/.config/polybar/scripts/updates.sh
+interval = 600
+
+format-background = ${colors.light}
+format-padding = 10
+format-margin = 5
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL %percentage%%
-label-volume-foreground = ${root.foreground}
+sink = alsa_output.pci-0000_1f_00.3.analog-stereo
 
-label-muted = 🔇 muted
-label-muted-foreground = #666
+use-ui-max = true
 
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+interval = 5
 
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 60
+label-muted = 
 
-format = <ramp> <label>
-format-underline = #f50a4d
-format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
+format-volume =  <label-volume>
+format-volume-background = ${colors.light}
+format-volume-padding = 10
+format-volume-margin = 5
 
-label = %temperature-c%
-label-warn = %temperature-c%
-label-warn-foreground = ${colors.secondary}
+format-muted = <label-muted>
+format-muted-background = ${colors.light}
+format-muted-padding = 10
+format-muted-margin = 5
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
+[module/ip]
+type = internal/network
+interface = enp24s0
 
-[module/powermenu]
-type = custom/menu
+unknown-as-up = true
 
-expand-right = true
+label-connected = %local_ip%
+label-disconnected = "N/A"
 
-format-spacing = 1
+format-connected = <label-connected>
+format-connected-background = ${colors.light}
+format-connected-padding = 10
+format-connected-margin = 5
 
-label-open = 
-label-open-foreground = ${colors.secondary}
-label-close =  cancel
-label-close-foreground = ${colors.secondary}
-label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
+format-disconnected = <label-disconnected>
+format-disconnected-background = ${colors.light}
+format-disconnected-padding = 10
+format-disconnected-margin = 5
 
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
+[module/storage]
+type = internal/fs
 
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
+mount-0 = /
 
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
+interval = 10
 
-[settings]
-screenchange-reload = true
-;compositing-background = xor
-;compositing-background = screen
-;compositing-foreground = source
-;compositing-border = over
-;pseudo-transparency = false
+fixed-values = true
 
-[global/wm]
-margin-top = 5
-margin-bottom = 5
+label-mounted =  %percentage_used%%
+
+format-mounted = <label-mounted>
+format-mounted-background = ${colors.light}
+format-mounted-padding = 10
+format-mounted-margin = 5
+
+[module/keyboard]
+type = internal/xkeyboard
+
+label-layout = %layout%
+
+format = <label-layout>
+format-background = ${colors.light}
+format-padding = 10
+format-margin = 5
+
+[module/brightness]
+type = custom/ipc
+
+hook-0 = ~/.config/polybar/scripts/brightness.sh
+hook-1 = ~/.config/polybar/scripts/brightness_up.sh
+hook-2 = ~/.config/polybar/scripts/brightness_down.sh
+
+initial = 1
+
+format-background = ${colors.light}
+format-padding = 10
+format-margin = 5
+
+click-left = polybar-msg -p %pid% hook brightness 2
+click-right = polybar-msg -p %pid% hook brightness 3
+
+[module/weather]
+type = custom/script
+exec = ~/.config/polybar/scripts/weather.sh
+interval = 600
+
+format-background = ${colors.light}
+format-padding = 10
+format-margin = 5
