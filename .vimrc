@@ -4,8 +4,8 @@ set tabstop=4
 
 set number relativenumber
 
-"set autoindent
-"set smartindent
+set autoindent
+set smartindent
 
 syntax on
 
