@@ -170,6 +170,9 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+bindsym $mod+Shift+f exec maim ~/screenshots/$(date +%s).png
+bindsym $mod+Shift+s exec maim -s ~/screenshots/$(date +%s).png
+
 for_window[class="^.*"] border pixel 0
 gaps inner 15
 gaps outer 0
