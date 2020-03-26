@@ -3,10 +3,9 @@ set shiftwidth=4
 set tabstop=4
 
 set number relativenumber
-set nu rnu
 
-set autoindent
-set smartindent
+"set autoindent
+"set smartindent
 
 syntax on
 

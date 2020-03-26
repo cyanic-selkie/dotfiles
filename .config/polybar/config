@@ -17,19 +17,13 @@
 ;==========================================================
 
 [colors]
-background = #8c461320
+background = #008c461320
 foreground = #f5f5f5
 
 white = #60de8c98
 
-;ac
-pink = #d26273
-;bi be
-light = #dc6a2939
-;mb mgf
-dark = #461320
-;mf
-yellow = #fdd835
+light = #005082
+dark = #1e1f5b
 
 [bar/main]
 width = 100%
@@ -46,8 +40,8 @@ font-1 = FontAwesome:style=Regular:size=8;
 enable-ipc = true
 
 modules-center = weather
-modules-right = pulseaudio updates brightness keyboard clock
-modules-left = ip network cpu temperature storage
+modules-right = battery pulseaudio updates keyboard clock
+modules-left = network cpu temperature storage
 
 [module/clock]
 type = internal/date
@@ -65,11 +59,10 @@ label = %date%%time%
 format = <label>
 format-background = ${colors.light}
 format-padding = 10
-format-margin = 5
 
 [module/network]
 type = internal/network
-interface = enp24s0
+interface = wlo1
 
 accumulate-stats = true
 unknown-as-up = true
@@ -80,37 +73,31 @@ label-disconnected = "N/A"
 format-connected = <label-connected>
 format-connected-background = ${colors.light}
 format-connected-padding = 10
-format-connected-margin = 5
 
 format-disconnected = <label-disconnected>
 format-disconnected-background = ${colors.light}
 format-disconnected-padding = 10
-format-disconnected-margin = 5
 
 [module/cpu]
 type = internal/cpu
 
-interval = 0.5
+interval = 2
 
 label =  %percentage%%
 
 format = <label>
-format-background = ${colors.light}
+format-background = ${colors.dark}
 format-padding = 10
-format-margin = 5
 
 [module/temperature]
 type = internal/temperature
 
-interval = 0.5
-
-hwmon-path = /sys/devices/platform/nct6775.2592/hwmon/hwmon2/temp2_input
+interval = 2
 
 label =  %temperature-c%
 format = <label>
 format-background = ${colors.light}
 format-padding = 10
-format-margin = 5
 
 [module/updates]
 type = custom/script
@@ -119,12 +106,9 @@ interval = 600
 
 format-background = ${colors.light}
 format-padding = 10
-format-margin = 5
 
 [module/pulseaudio]
 type = internal/pulseaudio
-
-sink = alsa_output.pci-0000_1f_00.3.analog-stereo
 
 use-ui-max = true
 
@@ -133,49 +117,27 @@ interval = 5
 label-muted = 
 
 format-volume =  <label-volume>
-format-volume-background = ${colors.light}
+format-volume-background = ${colors.dark}
 format-volume-padding = 10
-format-volume-margin = 5
 
 format-muted = <label-muted>
-format-muted-background = ${colors.light}
+format-muted-background = ${colors.dark}
 format-muted-padding = 10
-format-muted-margin = 5
-
-[module/ip]
-type = internal/network
-interface = enp24s0
-
-unknown-as-up = true
-
-label-connected = %local_ip%
-label-disconnected = "N/A"
-
-format-connected = <label-connected>
-format-connected-background = ${colors.light}
-format-connected-padding = 10
-format-connected-margin = 5
-
-format-disconnected = <label-disconnected>
-format-disconnected-background = ${colors.light}
-format-disconnected-padding = 10
-format-disconnected-margin = 5
 
 [module/storage]
 type = internal/fs
 
 mount-0 = /
 
-interval = 10
+interval = 60
 
 fixed-values = true
 
 label-mounted =  %percentage_used%%
 
 format-mounted = <label-mounted>
-format-mounted-background = ${colors.light}
+format-mounted-background = ${colors.dark}
 format-mounted-padding = 10
-format-mounted-margin = 5
 
 [module/keyboard]
 type = internal/xkeyboard
@@ -183,25 +145,8 @@ type = internal/xkeyboard
 label-layout = %layout%
 
 format = <label-layout>
-format-background = ${colors.light}
+format-background = ${colors.dark}
 format-padding = 10
-format-margin = 5
-
-[module/brightness]
-type = custom/ipc
-
-hook-0 = ~/.config/polybar/scripts/brightness.sh
-hook-1 = ~/.config/polybar/scripts/brightness_up.sh
-hook-2 = ~/.config/polybar/scripts/brightness_down.sh
-
-initial = 1
-
-format-background = ${colors.light}
-format-padding = 10
-format-margin = 5
-
-click-left = polybar-msg -p %pid% hook brightness 2
-click-right = polybar-msg -p %pid% hook brightness 3
 
 [module/weather]
 type = custom/script
@@ -210,4 +155,29 @@ interval = 600
 
 format-background = ${colors.light}
 format-padding = 10
-format-margin = 5
+
+[module/battery]
+type = internal/battery
+
+full-at = 99
+battery = BAT0
+adapter = AC0
+
+poll-interval = 5
+
+label-charging =  %percentage%%
+label-discharging =  %percentage%%
+label-full =  %percentage%%
+
+format-charging = <label-charging>
+format-discharging = <label-discharging>
+format-full = <label-full>
+
+format-charging-padding = 10
+format-charging-background = ${colors.light}
+
+format-discharging-padding = 10
+format-discharging-background = ${colors.light}
+
+format-full-padding = 10
+format-full-background = ${colors.light}
