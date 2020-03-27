@@ -37,7 +37,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -182,6 +182,7 @@ exec --no-startup-id "picom --experimental-backend --config ~/.config/picom.conf
 exec --no-startup-id "feh --bg-fill ~/.config/wallpapers/groot.jpg"
 exec --no-startup-id setxkbmap us,hr -option 'grp:win_space_toggle'
 exec --no-startup-id "setsid ~/.scripts/automnt.sh > /tmp/automnt 2>&1 < /tmp/automnt &"
+#exec --no-startup-id "transmission-daemon"
 exec --no-startup-id "dunst > /dev/null 2>&1 &"
 
 exec_always --no-startup-id ~/.config/polybar/launch.sh
