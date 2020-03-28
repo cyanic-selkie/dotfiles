@@ -1,26 +1,6 @@
-;==========================================================
-;
-;
-;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
-;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
-;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
-;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
-;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
-;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
-;
-;
-;   To learn more about how to configure Polybar
-;   go to https://github.com/polybar/polybar
-;
-;   The README contains a lot of information
-;
-;==========================================================
-
 [colors]
 background = #008c461320
 foreground = #f5f5f5
-
-white = #60de8c98
 
 light = #005082
 dark = #1e1f5b
@@ -36,8 +16,6 @@ foreground = ${colors.foreground}
 
 font-0 = NotoSans:size=10;
 font-1 = FontAwesome:style=Regular:size=8;
-
-enable-ipc = true
 
 modules-center = weather
 modules-right = battery pulseaudio updates keyboard clock

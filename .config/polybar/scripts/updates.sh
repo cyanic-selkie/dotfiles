@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 if ! updates_arch=$(checkupdates 2> /dev/null | wc -l ); then
     updates_arch=0
