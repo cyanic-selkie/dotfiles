@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-i3lock --clock --blur --nofork \
+i3lock --clock --blur --nofork --indicator \
 --datecolor=c45aecff --timecolor=c45aecff \
 --wrongtext="wrong" --veriftext="verifying" \
 --insidevercolor=000000ff --insidewrongcolor=000000ff --insidecolor=000000ff \
