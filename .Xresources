@@ -1,3 +1,4 @@
+Xcursor.size: 16
 !! rofi Appearance
 rofi*font: Noto Sans Mono Regular 14
 rofi.color-enabled: true
