@@ -14,8 +14,8 @@ fixed-center = true
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-font-0 = NotoSans:size=10;
-font-1 = FontAwesome:style=Regular:size=8;
+font-0 = NotoSans:size=10;1.5
+font-1 = FontAwesome:style=Regular:size=8;1.5
 
 modules-center = weather
 modules-right = battery pulseaudio updates keyboard clock
