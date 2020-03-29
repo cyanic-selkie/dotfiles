@@ -34,6 +34,6 @@ map <C-d> :ColorClear<CR>
 let g:airline_powerline_fonts = 1
 let g:airline_theme='deus'
 
-highlight DiffAdd ctermfg=36 ctermbg=NONE
-highlight DiffDelete ctermfg=160  ctermbg=NONE
-highlight DiffChange ctermfg=39  ctermbg=NONE
+highlight DiffAdd ctermfg=2 ctermbg=NONE
+highlight DiffDelete ctermfg=1  ctermbg=NONE
+highlight DiffChange ctermfg=4  ctermbg=NONE
