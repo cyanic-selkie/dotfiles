@@ -22,7 +22,7 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec "rofi -show run -modi run"
+bindsym $mod+d exec "rofi -show run"
 
 # change focus
 bindsym $mod+h focus left
