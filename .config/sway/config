@@ -4,7 +4,7 @@ set $mod Mod4
 # is used in the bar {} block below.
 font pango:Noto Sans 8
 
-exec swayidle -w \
+exec --no-startup-id swayidle -w \
         timeout 300 'swaylock -f -c 000000' \
         timeout 600 'swaymsg "output * dpms off"' \
             resume 'swaymsg "output * dpms on"' \
@@ -20,13 +20,13 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec --no-startup-id kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec "rofi -show run"
+bindsym $mod+d exec --no-startup-id "rofi -show run"
 
 # change focus
 bindsym $mod+h focus left
@@ -107,11 +107,11 @@ bindsym $mod+Shift+r reload
 # exit swap (logs you out of your X session)
 bindsym $mod+Shift+e exit
 
-bindsym Ctrl+Shift+l exec ~/.config/sway/lock.sh
-bindsym Ctrl+Shift+s exec systemctl suspend
-bindsym Ctrl+Shift+h exec systemctl hibernate
-bindsym Ctrl+Shift+o exec shutdown now
-bindsym Ctrl+Shift+r exec reboot
+bindsym Ctrl+Shift+l exec --no-startup-id ~/.config/sway/lock.sh
+bindsym Ctrl+Shift+s exec --no-startup-id systemctl suspend
+bindsym Ctrl+Shift+h exec --no-startup-id systemctl hibernate
+bindsym Ctrl+Shift+o exec --no-startup-id shutdown now
+bindsym Ctrl+Shift+r exec --no-startup-id reboot
 
 mode "resize" {
     bindsym h resize shrink width 10 px or 10 ppt
@@ -125,13 +125,13 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-bindsym $mod+Shift+f exec maim ~/screenshots/$(date +%s).png
-bindsym $mod+Shift+s exec maim -s ~/screenshots/$(date +%s).png
+bindsym $mod+Shift+f exec --no-startup-id maim ~/screenshots/$(date +%s).png
+bindsym $mod+Shift+s exec --no-startup-id maim -s ~/screenshots/$(date +%s).png
 
-bindsym Ctrl+Shift+k exec MOZ_ENABLE_WAYLAND=1 firefox
+bindsym Ctrl+Shift+k exec --no-startup-id MOZ_ENABLE_WAYLAND=1 firefox
 
-bindsym XF86MonBrightnessUp exec light -A 5
-bindsym XF86MonBrightnessDown exec light -U 5
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 
 default_border none
 gaps inner 15
