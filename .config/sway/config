@@ -124,6 +124,8 @@ bindsym $mod+r mode "resize"
 bindsym $mod+Shift+f exec maim ~/screenshots/$(date +%s).png
 bindsym $mod+Shift+s exec maim -s ~/screenshots/$(date +%s).png
 
+bindsym Ctrl+Shift+k exec MOZ_ENABLE_WAYLAND=1 firefox
+
 bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
 
@@ -131,15 +133,14 @@ default_border none
 gaps inner 15
 gaps outer 0
 
-input 1:1:AT_Translated_Set_2_keyboard {
-    xkb_options caps:swapescape
+input type:keyboard {
+    xkb_layout us,hr
+    xkb_options "caps:swapescape,grp:win_space_toggle"
 }
 
-#exec --no-startup-id "xrandr --output HDMI-1 --below eDP-1 --rotate right --off"
-#exec --no-startup-id "picom --config ~/.config/picom.conf -b"
-#exec --no-startup-id setxkbmap us,hr -option 'grp:win_space_toggle'
+output HDMI-A-1 dpms off
+
 exec --no-startup-id "setsid ~/.scripts/automnt.sh > /tmp/automnt 2>&1 < /tmp/automnt &"
 exec --no-startup-id "transmission-daemon &"
 exec --no-startup-id "dunst > /dev/null 2>&1 &"
 exec --no-startup-id "swaybg -m fill -i .config/wallpapers/groot.jpg"
-exec --no-startup-id ~/.config/polybar/launch.sh
