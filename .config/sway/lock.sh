@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-swaylock \
+swaylock -f \
     --screenshots \
     --clock \
     --indicator \

@@ -3,3 +3,5 @@ let &packpath = &runtimepath
 source ~/.vimrc
 
 set guicursor=
+
+nnoremap <esc> :noh<return><esc>
