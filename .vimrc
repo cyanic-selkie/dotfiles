@@ -54,3 +54,17 @@ let g:airline_theme='deus'
 highlight DiffAdd ctermfg=2 ctermbg=NONE
 highlight DiffDelete ctermfg=1  ctermbg=NONE
 highlight DiffChange ctermfg=4  ctermbg=NONE
+
+"Vimtex
+let g:vimtex_view_general_callback = 'RefreshPDF'
+
+function! RefreshPDF(status) abort
+  if a:status
+    call system('pkill -HUP mupdf')
+  endif
+endfunction
+
+augroup Vimtex
+  autocmd!
+  autocmd FileType tex :VimtexCompile
+augroup end
