@@ -100,3 +100,12 @@ tsm-purge() { transmission-remote -t"$1" --remove-and-delete; }
 tsm-remove() { transmission-remote -t"$1" -r; }
 tsm-info() { transmission-remote -t"$1" -i; }
 
+# Set default text editor
+VISUAL=nvim
+EDITOR=nvi;
+export VISUAL
+export editor
+
+# Add scripts directory to path
+PATH="/home/sven/.scripts:${PATH}"
+export PATH
