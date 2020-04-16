@@ -123,8 +123,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-bindsym $mod+Shift+f exec maim --no-startup-id ~/screenshots/$(date +%s).png
-bindsym $mod+Shift+s exec maim --no-startup-id -s ~/screenshots/$(date +%s).png
+bindsym $mod+Shift+f exec --no-startup-id maim ~/screenshots/$(date +%s).png
+bindsym $mod+Shift+s exec --no-startup-id maim -s ~/screenshots/$(date +%s).png
 
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
