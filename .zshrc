@@ -109,3 +109,7 @@ export editor
 # Add scripts directory to path
 PATH="/home/sven/.scripts:${PATH}"
 export PATH
+
+# C and CXX env variables
+export CC=clang
+export CXX=clang++
