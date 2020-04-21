@@ -1,7 +1,3 @@
-"set runtimepath^=~/.vim runtimepath+=~/.vim/after
-"let &packpath = &runtimepath
-"source ~/.vimrc
-
 set expandtab
 set shiftwidth=4
 set tabstop=4
@@ -11,8 +7,7 @@ set number relativenumber
 set autoindent
 set smartindent
 
-syntax on
-
+syntax on 
 call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'junegunn/fzf', { 'do': './install --bin' }
@@ -39,10 +34,14 @@ Plug 'tpope/vim-surround'
 
 Plug 'terryma/vim-multiple-cursors'
 
+Plug 'ryanoasis/vim-devicons'
+
 call plug#end()
 
 "fzf
 map <SPACE> :Files<CR>
+map <A-s> :Ag<CR>
+map <A-r> :Rg<CR>
 
 "nerdtree
 map <C-o> :NERDTreeToggle<CR>
@@ -93,7 +92,7 @@ nnoremap <esc> :noh<return><esc>
 "ale
 let g:ale_linters = {'cpp' : ['clang', 'clangtidy']}
 "let g:ale_fixers = {'cpp' : ['clangtidy']}
-let g:ale_cpp_clang_options = '-std=c++2a -Wall -Wextra -Wpedantic'
+let g:ale_cpp_clang_options = '-std=c++2a -Wall -Wextra -Wpedantic -Wshadow -fsanitize=address,undefined'
 let g:ale_cpp_clangtidy_checks = [
             \ 'cppcoreguidelines-avoid-goto',
             \ 'cppcoreguidelines-init-variables',
