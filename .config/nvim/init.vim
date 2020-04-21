@@ -28,8 +28,6 @@ Plug 'junegunn/goyo.vim'
 
 Plug 'dense-analysis/ale'
 
-Plug 'ycm-core/YouCompleteMe'
-
 Plug 'tpope/vim-surround'
 
 Plug 'terryma/vim-multiple-cursors'
@@ -79,20 +77,18 @@ augroup Vimtex
   autocmd FileType tex :VimtexCompile
 augroup end
 
-"YouCompleteMe
-nnoremap gd :YcmCompleter GoToDefinition<CR>
-nnoremap gl :YcmCompleter GoToDeclaration<CR>
-let g:ycm_show_diagnostics_ui = 0
-let g:ycm_autoclose_preview_window_after_completion = 1
-
 set guicursor=
 
 nnoremap <esc> :noh<return><esc>
 
 "ale
-let g:ale_linters = {'cpp' : ['clang', 'clangtidy']}
-"let g:ale_fixers = {'cpp' : ['clangtidy']}
+nnoremap gd :ALEGoToDefinition<CR>
+inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+
+let g:ale_linters = {'cpp' : ['clangd', 'clangtidy' ]}
 let g:ale_cpp_clang_options = '-std=c++2a -Wall -Wextra -Wpedantic -Wshadow -fsanitize=address,undefined'
+let g:ale_cpp_clangtidy_options = ''
 let g:ale_cpp_clangtidy_checks = [
             \ 'cppcoreguidelines-avoid-goto',
             \ 'cppcoreguidelines-init-variables',
@@ -121,6 +117,7 @@ let g:ale_cpp_clangtidy_checks = [
             \ 'readability-magic-numbers']
 let g:ale_linters_explicit = 1
 let g:airline#extensions#ale#enabled = 1
+let g:ale_completion_enabled = 1
 
 "miscellaneous
 map <C-e> :q<CR>
