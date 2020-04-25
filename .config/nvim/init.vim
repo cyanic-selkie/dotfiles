@@ -10,7 +10,6 @@ set smartindent
 syntax on 
 call plug#begin(stdpath('data') . '/plugged')
 
-Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 
 Plug 'preservim/nerdtree'
@@ -42,7 +41,7 @@ map <A-s> :Ag<CR>
 map <A-r> :Rg<CR>
 
 "nerdtree
-map <C-o> :NERDTreeToggle<CR>
+map <C-t> :NERDTreeToggle<CR>
 
 "Colorizer
 map <C-c> :ColorHighlight<CR>
@@ -83,41 +82,51 @@ nnoremap <esc> :noh<return><esc>
 
 "ale
 nnoremap gd :ALEGoToDefinition<CR>
+nnoremap gt :ALEGoToTypeDefinition<CR>
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
-let g:ale_linters = {'cpp' : ['clangd', 'clangtidy' ]}
-let g:ale_cpp_clang_options = '-std=c++2a -Wall -Wextra -Wpedantic -Wshadow -fsanitize=address,undefined'
-let g:ale_cpp_clangtidy_options = ''
-let g:ale_cpp_clangtidy_checks = [
-            \ 'cppcoreguidelines-avoid-goto',
-            \ 'cppcoreguidelines-init-variables',
-            \ 'cppcoreguidelines-interfaces-global-init',
-            \ 'cppcoreguidelines-macro-usage',
-            \ 'cppcoreguidelines-narrowing-conversions',
-            \ 'cppcoreguidelines-no-malloc',
-            \ 'cppcoreguidelines-owning-memory',
-            \ 'cppcoreguidelines-pro-bounds-array-to-pointer-decay',
-            \ 'cppcoreguidelines-pro-constant-array-index',
-            \ 'cppcoreguidelines-pro-bounds-pointer-arithmetic',
-            \ 'cppcoreguidelines-pro-type-const-cast',
-            \ 'cppcoreguidelines-pro-type-cstyle-cast',
-            \ 'cppcoreguidelines-pro-type-member-init',
-            \ 'cppcoreguidelines-pro-type-reinterpret-cast',
-            \ 'cppcoreguidelines-pro-type-static-cast-downcast',
-            \ 'cppcoreguidelines-pro-type-union-access',
-            \ 'cppcoreguidelines-pro-type-vararg',
-            \ 'cppcoreguidelines-slicing',
-            \ 'cppcoreguidelines-special-member-functions',
-            \ 'google-build-using-namespace',
-            \ 'google-explicit-constructor',
-            \ 'google-global-names-in-headers',
-            \ 'google-readability-casting',
-            \ 'google-runtime-int',
-            \ 'readability-magic-numbers']
+let g:ale_linters = {'cpp' : ['clangd']}
+let g:ale_cpp_clangd_options = '--clang-tidy --clang-tidy-checks="
+                                    \ cppcoreguidelines-avoid-goto,
+                                    \ cppcoreguidelines-init-variables,
+                                    \ cppcoreguidelines-interfaces-global-init,
+                                    \ cppcoreguidelines-macro-usage,
+                                    \ cppcoreguidelines-narrowing-conversions,
+                                    \ cppcoreguidelines-no-malloc,
+                                    \ cppcoreguidelines-owning-memory,
+                                    \ cppcoreguidelines-pro-bounds-array-to-pointer-decay,
+                                    \ cppcoreguidelines-pro-constant-array-index,
+                                    \ cppcoreguidelines-pro-bounds-pointer-arithmetic,
+                                    \ cppcoreguidelines-pro-type-const-cast,
+                                    \ cppcoreguidelines-pro-type-cstyle-cast,
+                                    \ cppcoreguidelines-pro-type-member-init,
+                                    \ cppcoreguidelines-pro-type-reinterpret-cast,
+                                    \ cppcoreguidelines-pro-type-static-cast-downcast,
+                                    \ cppcoreguidelines-pro-type-union-access,
+                                    \ cppcoreguidelines-pro-type-vararg,
+                                    \ cppcoreguidelines-slicing,
+                                    \ cppcoreguidelines-special-member-functions,
+                                    \ google-build-using-namespace,
+                                    \ google-explicit-constructor,
+                                    \ google-global-names-in-headers,
+                                    \ google-readability-casting,
+                                    \ google-runtime-int,
+                                    \ readability-magic-numbers"'
 let g:ale_linters_explicit = 1
 let g:airline#extensions#ale#enabled = 1
 let g:ale_completion_enabled = 1
 
+let g:ale_lint_on_text_changed = 'insert'
+
 "miscellaneous
 map <C-e> :q<CR>
+
+"PMS testing
+call ale#linter#Define('cpp', {
+            \ 'name': 'pms_server',
+            \ 'lsp': 'stdio',
+            \ 'executable' : 'tee',
+            \ 'command' : '%e /home/sven/pms_log.txt',
+            \ 'project_root' : function('ale#c#FindProjectRoot')
+            \ })
