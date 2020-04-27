@@ -138,12 +138,12 @@
     context = mod4+shift+i
 
 [urgency_low]
-    background = "#222222"
+    background = "#383838"
     foreground = "#f5f5f5"
     timeout = 10
 
 [urgency_normal]
-    background = "#005082"
+    background = "#101010"
     foreground = "#f5f5f5"
     timeout = 10
 

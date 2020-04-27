@@ -1,8 +1,9 @@
 [colors]
 background = #00000000
 foreground = #f5f5f5
-light = #005082
-dark = #1e1f5b
+
+light = #383838
+dark = #101010
 
 [bar/main]
 width = 100%
@@ -132,7 +133,7 @@ type = custom/script
 exec = ~/.config/polybar/scripts/weather.sh
 interval = 600
 
-format-background = ${colors.light}
+format-background = ${colors.dark}
 format-padding = 10
 
 [module/battery]
