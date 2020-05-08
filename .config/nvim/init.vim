@@ -33,6 +33,8 @@ Plug 'terryma/vim-multiple-cursors'
 
 Plug 'ryanoasis/vim-devicons'
 
+Plug 'tikhomirov/vim-glsl'
+
 call plug#end()
 
 "fzf
@@ -63,6 +65,7 @@ highlight DiffChange ctermfg=4  ctermbg=NONE
 highlight clear SignColumn
 
 "vimtex
+let g:vimtex_view_method = 'mupdf'
 let g:vimtex_view_general_callback = 'RefreshPDF'
 
 function! RefreshPDF(status) abort
