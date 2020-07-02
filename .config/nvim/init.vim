@@ -35,6 +35,8 @@ Plug 'ryanoasis/vim-devicons'
 
 Plug 'tikhomirov/vim-glsl'
 
+Plug 'dag/vim-fish'
+
 call plug#end()
 
 "fzf
