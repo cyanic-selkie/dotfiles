@@ -4,29 +4,27 @@ set $mod Mod4
 # is used in the bar {} block below.
 font pango:Noto Sans 8
 
-exec --no-startup-id swayidle -w \
-        timeout 300 'swaylock -f -c 000000' \
-        timeout 600 'swaymsg "output * dpms off"' \
-            resume 'swaymsg "output * dpms on"' \
-        before-sleep '~/.config/sway/lock.sh'
+#        timeout 300 '~/.config/sway/lock.sh' \
+#        timeout 600 'swaymsg "output * dpms off"' \
+#            resume 'swaymsg "output * dpms on"' \
 
 # Use pactl to adjust volume in PulseAudio.
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id kitty
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start rofi (a program launcher)
-bindsym $mod+d exec --no-startup-id "rofi -show run"
+# start bemenu (a program launcher)
+bindsym $mod+d exec "bemenu-run --fn 'Noto Sans:pixelsize=15' --nb '#101010' --hb '#383838' --nf '#f5f5f5' --hf '#f5f5f5' --tf '#f5f5f5' --prompt 'exec' -i -m 1 -l 10"
 
 # change focus
 bindsym $mod+h focus left
@@ -55,7 +53,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym Shift+Ctrl+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -107,11 +105,11 @@ bindsym $mod+Shift+r reload
 # exit swap (logs you out of your X session)
 bindsym $mod+Shift+e exit
 
-bindsym Ctrl+Shift+l exec --no-startup-id ~/.config/sway/lock.sh
-bindsym Ctrl+Shift+s exec --no-startup-id systemctl suspend
-bindsym Ctrl+Shift+h exec --no-startup-id systemctl hibernate
-bindsym Ctrl+Shift+o exec --no-startup-id shutdown now
-bindsym Ctrl+Shift+r exec --no-startup-id reboot
+bindsym Ctrl+Shift+l exec ~/.config/sway/lock.sh
+bindsym Ctrl+Shift+s exec systemctl suspend
+bindsym Ctrl+Shift+h exec systemctl hibernate
+bindsym Ctrl+Shift+o exec shutdown now
+bindsym Ctrl+Shift+r exec reboot
 
 mode "resize" {
     bindsym h resize shrink width 10 px or 10 ppt
@@ -125,26 +123,39 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-bindsym $mod+Shift+f exec --no-startup-id maim ~/screenshots/$(date +%s).png
-bindsym $mod+Shift+s exec --no-startup-id maim -s ~/screenshots/$(date +%s).png
+bindsym $mod+Shift+a exec grim ~/screenshots/$(date +%s).png
+bindsym $mod+Shift+Ctrl+a exec grim - | wl-copy
+bindsym $mod+Shift+s exec grim -g "$(slurp)" ~/screenshots/$(date +%s).png
+bindsym $mod+Shift+Ctrl+s exec grim -g "$(slurp)" - | wl-copy
+bindsym $mod+Shift+w exec "~/.scripts/scrwnd"
+bindsym $mod+Shift+Ctrl+w exec "~/.scripts/scrwndclp"
 
-bindsym Ctrl+Shift+k exec --no-startup-id MOZ_ENABLE_WAYLAND=1 firefox
-
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
+# brightness hotkeys
+bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec light -U 5
 
 default_border none
-gaps inner 15
+gaps inner 0
 gaps outer 0
 
+# set default layouts and the hotkey for switching between them
 input type:keyboard {
     xkb_layout us,hr
     xkb_options "caps:swapescape,grp:win_space_toggle"
 }
 
-output HDMI-A-1 dpms off
+output HDMI-A-1 transform 90 scale 2
+input "10182:500:GDX1515:00_27C6:01F4_Touchpad" tap enable
 
-exec --no-startup-id "setsid ~/.scripts/automnt.sh > /tmp/automnt 2>&1 < /tmp/automnt &"
-exec --no-startup-id "transmission-daemon &"
-exec --no-startup-id "dunst > /dev/null 2>&1 &"
-exec --no-startup-id "swaybg -m fill -i .config/wallpapers/groot.jpg"
+focus output eDP-1
+
+# turn on daemon for mounting usb devices
+exec "setsid ~/.scripts/automnt > /tmp/automnt 2>&1 < /tmp/automnt &"
+# turn on transmission daemon
+exec "transmission-daemon &"
+# start mako for notifications
+exec "mako -c ~/.config/mako/config > /dev/null 2>&1 &"
+# set the wallpaper
+exec "swaybg -m fill -i .config/wallpapers/feynman.jpg"
+# swayidle
+exec 'swayidle -w before-sleep ~/.config/sway/lock.sh'
