@@ -91,7 +91,7 @@ nnoremap gt :ALEGoToTypeDefinition<CR>
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
-let g:ale_linters = {'cpp' : ['clangd']}
+let g:ale_linters = {'cpp' : ['clangd'], 'tex' : ['chktex']}
 let g:ale_cpp_clangd_options = '--clang-tidy --clang-tidy-checks="
                                     \ cppcoreguidelines-avoid-goto,
                                     \ cppcoreguidelines-init-variables,
