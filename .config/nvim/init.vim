@@ -67,6 +67,7 @@ highlight DiffChange ctermfg=4  ctermbg=NONE
 highlight clear SignColumn
 
 "vimtex
+let g:tex_flavor = 'latex'
 let g:vimtex_view_method = 'mupdf'
 let g:vimtex_view_general_callback = 'RefreshPDF'
 
