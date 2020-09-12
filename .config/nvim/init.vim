@@ -13,6 +13,7 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'junegunn/fzf.vim'
 
 Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'chrisbra/Colorizer'
 
@@ -92,7 +93,7 @@ nnoremap gt :ALEGoToTypeDefinition<CR>
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
-let g:ale_linters = {'cpp' : ['clangd'], 'tex' : ['chktex']}
+let g:ale_linters = {'cpp' : ['clangd'], 'tex' : ['chktex'], 'python' : ['pyls']}
 let g:ale_cpp_clangd_options = '--clang-tidy --clang-tidy-checks="
                                     \ cppcoreguidelines-avoid-goto,
                                     \ cppcoreguidelines-init-variables,
