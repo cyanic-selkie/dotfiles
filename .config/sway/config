@@ -144,6 +144,10 @@ input type:keyboard {
     xkb_options "caps:swapescape,grp:win_space_toggle"
 }
 
+input type:mouse {
+    pointer_accel -1
+}
+
 output HDMI-A-1 transform 90 scale 2
 input "10182:500:GDX1515:00_27C6:01F4_Touchpad" tap enable
 
