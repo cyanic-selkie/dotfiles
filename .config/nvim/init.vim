@@ -42,7 +42,7 @@ call plug#end()
 
 "fzf
 map <SPACE> :Files<CR>
-map <A-s> :Ag<CR>
+map <A-s> :BLines<CR>
 map <A-r> :Rg<CR>
 
 "nerdtree
@@ -93,7 +93,10 @@ nnoremap gt :ALEGoToTypeDefinition<CR>
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
-let g:ale_linters = {'cpp' : ['clangd'], 'tex' : ['chktex'], 'python' : ['pyls']}
+let g:ale_linters = {'cpp' : ['clangd'], 'tex' : ['chktex'], 'python' : ['pyls', 'pylint']}
+let g:ale_fixers = {'python' : ['black']}
+let g:ale_fix_on_save = 1
+
 let g:ale_cpp_clangd_options = '--clang-tidy --clang-tidy-checks="
                                     \ cppcoreguidelines-avoid-goto,
                                     \ cppcoreguidelines-init-variables,
