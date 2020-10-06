@@ -8,6 +8,12 @@ set autoindent
 set smartindent
 
 syntax on 
+
+"floating windows colors
+hi NormalFloat term=None guifg=#eeeeee guibg=#333333 ctermfg=255 ctermbg=234
+hi Pmenu term=None guifg=#eeeeee guibg=#333333 ctermfg=255 ctermbg=234
+hi PmenuSel term=None guifg=#80a0ff guibg=#333333 ctermfg=14 ctermbg=234
+
 call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'junegunn/fzf.vim'
@@ -21,6 +27,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 Plug 'mhinz/vim-signify'
+Plug 'rhysd/git-messenger.vim'
 
 Plug 'lervag/vimtex'
 
