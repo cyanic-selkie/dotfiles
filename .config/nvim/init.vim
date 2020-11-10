@@ -18,8 +18,11 @@ call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'junegunn/fzf.vim'
 
+Plug 'preservim/nerdcommenter'
+
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 Plug 'chrisbra/Colorizer'
 
@@ -44,6 +47,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'tikhomirov/vim-glsl'
 
 Plug 'dag/vim-fish'
+
+Plug 'joukevandermaas/vim-ember-hbs'
 
 call plug#end()
 
@@ -76,33 +81,37 @@ highlight clear SignColumn
 
 "vimtex
 let g:tex_flavor = 'latex'
-let g:vimtex_view_method = 'mupdf'
-let g:vimtex_view_general_callback = 'RefreshPDF'
+"let g:vimtex_view_method = 'mupdf'
+"let g:vimtex_view_general_callback = 'RefreshPDF'
 
-function! RefreshPDF(status) abort
-  if a:status
-    call system('pkill -HUP mupdf')
-  endif
-endfunction
+"function! RefreshPDF(status) abort
+  "if a:status
+    "call system('pkill -HUP mupdf')
+  "endif
+"endfunction
 
-augroup Vimtex
-  autocmd!
-  autocmd FileType tex :VimtexCompile
-augroup end
+"augroup Vimtex
+  "autocmd!
+  "autocmd FileType tex :VimtexCompile
+"augroup end
 
 set guicursor=
 
 nnoremap <esc> :noh<return><esc>
 
 "ale
+highlight ALEWarning ctermbg=8
+
 nnoremap gd :ALEGoToDefinition<CR>
 nnoremap gt :ALEGoToTypeDefinition<CR>
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
-let g:ale_linters = {'cpp' : ['clangd'], 'tex' : ['chktex'], 'python' : ['pyls', 'pylint']}
-let g:ale_fixers = {'python' : ['black']}
+let g:ale_linters = {'cpp' : ['clangd', 'clang-tidy'], 'tex' : ['chktex'], 'python' : ['pyls', 'flake8'], 'javascript' : ['eslint'], 'handlebars' : ['ember-template-lint']}
+let g:ale_fixers = {'cpp' : ['clang-format'], 'python' : ['black', 'isort'], 'javascript' : ['prettier', 'eslint'], 'tex' : ['latexindent']}
 let g:ale_fix_on_save = 1
+
+let g:ale_c_clangformat_options = "--style=\"{BasedOnStyle: llvm, IndentWidth: 4, PointerAlignment: Left}\""
 
 let g:ale_cpp_clangd_options = '--clang-tidy --clang-tidy-checks="
                                     \ cppcoreguidelines-avoid-goto,
@@ -138,12 +147,3 @@ let g:ale_lint_on_text_changed = 'insert'
 
 "miscellaneous
 map <C-e> :q<CR>
-
-"PMS testing
-call ale#linter#Define('cpp', {
-            \ 'name': 'pms_server',
-            \ 'lsp': 'stdio',
-            \ 'executable' : 'tee',
-            \ 'command' : '%e /home/sven/pms_log.txt',
-            \ 'project_root' : function('ale#c#FindProjectRoot')
-            \ })
