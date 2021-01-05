@@ -113,32 +113,33 @@ let g:ale_fix_on_save = 1
 
 let g:ale_c_clangformat_options = "--style=\"{BasedOnStyle: llvm, IndentWidth: 4, PointerAlignment: Left}\""
 
-let g:ale_cpp_clangd_options = '--clang-tidy --clang-tidy-checks="
-                                    \ cppcoreguidelines-avoid-goto,
-                                    \ cppcoreguidelines-init-variables,
-                                    \ cppcoreguidelines-interfaces-global-init,
-                                    \ cppcoreguidelines-macro-usage,
-                                    \ cppcoreguidelines-narrowing-conversions,
-                                    \ cppcoreguidelines-no-malloc,
-                                    \ cppcoreguidelines-owning-memory,
-                                    \ cppcoreguidelines-pro-bounds-array-to-pointer-decay,
-                                    \ cppcoreguidelines-pro-constant-array-index,
-                                    \ cppcoreguidelines-pro-bounds-pointer-arithmetic,
-                                    \ cppcoreguidelines-pro-type-const-cast,
-                                    \ cppcoreguidelines-pro-type-cstyle-cast,
-                                    \ cppcoreguidelines-pro-type-member-init,
-                                    \ cppcoreguidelines-pro-type-reinterpret-cast,
-                                    \ cppcoreguidelines-pro-type-static-cast-downcast,
-                                    \ cppcoreguidelines-pro-type-union-access,
-                                    \ cppcoreguidelines-pro-type-vararg,
-                                    \ cppcoreguidelines-slicing,
-                                    \ cppcoreguidelines-special-member-functions,
-                                    \ google-build-using-namespace,
-                                    \ google-explicit-constructor,
-                                    \ google-global-names-in-headers,
-                                    \ google-readability-casting,
-                                    \ google-runtime-int,
-                                    \ readability-magic-numbers"'
+let g:ale_cpp_clang_options = '--clang-tidy --clang-tidy-checks="*"'
+"let g:ale_cpp_clangd_options = '--clang-tidy --clang-tidy-checks="
+                                    "\ cppcoreguidelines-avoid-goto,
+                                    "\ cppcoreguidelines-init-variables,
+                                    "\ cppcoreguidelines-interfaces-global-init,
+                                    "\ cppcoreguidelines-macro-usage,
+                                    "\ cppcoreguidelines-narrowing-conversions,
+                                    "\ cppcoreguidelines-no-malloc,
+                                    "\ cppcoreguidelines-owning-memory,
+                                    "\ cppcoreguidelines-pro-bounds-array-to-pointer-decay,
+                                    "\ cppcoreguidelines-pro-constant-array-index,
+                                    "\ cppcoreguidelines-pro-bounds-pointer-arithmetic,
+                                    "\ cppcoreguidelines-pro-type-const-cast,
+                                    "\ cppcoreguidelines-pro-type-cstyle-cast,
+                                    "\ cppcoreguidelines-pro-type-member-init,
+                                    "\ cppcoreguidelines-pro-type-reinterpret-cast,
+                                    "\ cppcoreguidelines-pro-type-static-cast-downcast,
+                                    "\ cppcoreguidelines-pro-type-union-access,
+                                    "\ cppcoreguidelines-pro-type-vararg,
+                                    "\ cppcoreguidelines-slicing,
+                                    "\ cppcoreguidelines-special-member-functions,
+                                    "\ google-build-using-namespace,
+                                    "\ google-explicit-constructor,
+                                    "\ google-global-names-in-headers,
+                                    "\ google-readability-casting,
+                                    "\ google-runtime-int,
+                                    "\ readability-magic-numbers"'
 let g:ale_linters_explicit = 1
 let g:airline#extensions#ale#enabled = 1
 let g:ale_completion_enabled = 1
