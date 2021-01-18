@@ -20,6 +20,10 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'preservim/nerdcommenter'
 
+Plug 'voldikss/vim-floaterm'
+
+Plug 'justinmk/vim-sneak'
+
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -51,6 +55,12 @@ Plug 'dag/vim-fish'
 Plug 'joukevandermaas/vim-ember-hbs'
 
 call plug#end()
+
+"floatterm
+let g:floaterm_keymap_toggle = '<Leader>t'
+
+"sneak
+let g:sneak#label = 1
 
 "fzf
 map <SPACE> :Files<CR>
@@ -108,7 +118,7 @@ inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 let g:ale_linters = {'cpp' : ['clangd', 'clang-tidy'], 'tex' : ['chktex'], 'python' : ['pyls', 'flake8'], 'javascript' : ['eslint'], 'handlebars' : ['ember-template-lint']}
-let g:ale_fixers = {'cpp' : ['clang-format'], 'python' : ['black', 'isort'], 'javascript' : ['prettier', 'eslint'], 'tex' : ['latexindent']}
+let g:ale_fixers = {'cpp' : ['clang-format'], 'c' : ['clang-format'], 'python' : ['black', 'isort'], 'javascript' : ['prettier', 'eslint'], 'tex' : ['latexindent']}
 let g:ale_fix_on_save = 1
 
 let g:ale_c_clangformat_options = "--style=\"{BasedOnStyle: llvm, IndentWidth: 4, PointerAlignment: Left}\""

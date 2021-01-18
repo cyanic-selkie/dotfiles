@@ -160,6 +160,6 @@ exec "transmission-daemon &"
 # start mako for notifications
 exec "mako -c ~/.config/mako/config > /dev/null 2>&1 &"
 # set the wallpaper
-exec "swaybg -m fill -i .config/wallpapers/feynman.jpg"
+exec "swaybg -m fill -i .config/wallpapers/ironman.png"
 # swayidle
 exec 'swayidle -w before-sleep ~/.config/sway/lock.sh'
