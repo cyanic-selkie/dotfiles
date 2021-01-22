@@ -1,6 +1,7 @@
 set expandtab
-set shiftwidth=4
+set softtabstop=-1
 set tabstop=4
+set shiftwidth=0
 
 set number relativenumber
 
@@ -27,8 +28,6 @@ Plug 'justinmk/vim-sneak'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
-Plug 'chrisbra/Colorizer'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -69,10 +68,6 @@ map <A-r> :Rg<CR>
 
 "nerdtree
 map <C-t> :NERDTreeToggle<CR>
-
-"Colorizer
-map <C-c> :ColorHighlight<CR>
-map <C-d> :ColorClear<CR>
 
 "goyo
 let g:goyo_width = 150
