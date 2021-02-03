@@ -15,10 +15,10 @@ bind-key N prev-unread
 bind-key U show-urls
 
 color listnormal cyan default
-color listfocus black yellow standout bold
+color listfocus black yellow bold
 color listnormal_unread blue default
-color listfocus_unread yellow default bold
-color info magenta black bold
+color listfocus_unread black yellow bold
+color info magenta default bold
 color article cyan default
 
 browser firefox
