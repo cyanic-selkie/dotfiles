@@ -23,6 +23,8 @@ Plug 'preservim/nerdcommenter'
 
 Plug 'voldikss/vim-floaterm'
 
+Plug 'vimwiki/vimwiki'
+
 Plug 'justinmk/vim-sneak'
 
 Plug 'preservim/nerdtree'
@@ -43,8 +45,6 @@ Plug 'dense-analysis/ale'
 
 Plug 'tpope/vim-surround'
 
-Plug 'terryma/vim-multiple-cursors'
-
 Plug 'ryanoasis/vim-devicons'
 
 Plug 'tikhomirov/vim-glsl'
@@ -53,7 +53,12 @@ Plug 'dag/vim-fish'
 
 Plug 'joukevandermaas/vim-ember-hbs'
 
+Plug 'wellle/context.vim'
+
 call plug#end()
+
+"context
+let g:context_enabled = 1
 
 "floatterm
 let g:floaterm_keymap_toggle = '<Leader>t'
@@ -74,7 +79,7 @@ let g:goyo_width = 150
 
 nnoremap <C-g> :Goyo<cr>
 
-"Statusbar powerline visuals
+"statusbar powerline visuals
 let g:airline_powerline_fonts = 1
 let g:airline_theme='deus'
 
@@ -86,23 +91,6 @@ highlight clear SignColumn
 
 "vimtex
 let g:tex_flavor = 'latex'
-"let g:vimtex_view_method = 'mupdf'
-"let g:vimtex_view_general_callback = 'RefreshPDF'
-
-"function! RefreshPDF(status) abort
-  "if a:status
-    "call system('pkill -HUP mupdf')
-  "endif
-"endfunction
-
-"augroup Vimtex
-  "autocmd!
-  "autocmd FileType tex :VimtexCompile
-"augroup end
-
-set guicursor=
-
-nnoremap <esc> :noh<return><esc>
 
 "ale
 highlight ALEWarning ctermbg=8
@@ -119,32 +107,6 @@ let g:ale_fix_on_save = 1
 let g:ale_c_clangformat_options = "--style=\"{BasedOnStyle: llvm, IndentWidth: 4, PointerAlignment: Left}\""
 
 let g:ale_cpp_clang_options = '--clang-tidy --clang-tidy-checks="*"'
-"let g:ale_cpp_clangd_options = '--clang-tidy --clang-tidy-checks="
-                                    "\ cppcoreguidelines-avoid-goto,
-                                    "\ cppcoreguidelines-init-variables,
-                                    "\ cppcoreguidelines-interfaces-global-init,
-                                    "\ cppcoreguidelines-macro-usage,
-                                    "\ cppcoreguidelines-narrowing-conversions,
-                                    "\ cppcoreguidelines-no-malloc,
-                                    "\ cppcoreguidelines-owning-memory,
-                                    "\ cppcoreguidelines-pro-bounds-array-to-pointer-decay,
-                                    "\ cppcoreguidelines-pro-constant-array-index,
-                                    "\ cppcoreguidelines-pro-bounds-pointer-arithmetic,
-                                    "\ cppcoreguidelines-pro-type-const-cast,
-                                    "\ cppcoreguidelines-pro-type-cstyle-cast,
-                                    "\ cppcoreguidelines-pro-type-member-init,
-                                    "\ cppcoreguidelines-pro-type-reinterpret-cast,
-                                    "\ cppcoreguidelines-pro-type-static-cast-downcast,
-                                    "\ cppcoreguidelines-pro-type-union-access,
-                                    "\ cppcoreguidelines-pro-type-vararg,
-                                    "\ cppcoreguidelines-slicing,
-                                    "\ cppcoreguidelines-special-member-functions,
-                                    "\ google-build-using-namespace,
-                                    "\ google-explicit-constructor,
-                                    "\ google-global-names-in-headers,
-                                    "\ google-readability-casting,
-                                    "\ google-runtime-int,
-                                    "\ readability-magic-numbers"'
 let g:ale_linters_explicit = 1
 let g:airline#extensions#ale#enabled = 1
 let g:ale_completion_enabled = 1
@@ -152,4 +114,7 @@ let g:ale_completion_enabled = 1
 let g:ale_lint_on_text_changed = 'insert'
 
 "miscellaneous
-map <C-e> :q<CR>
+set guicursor=
+
+nnoremap <esc> :noh<return><esc>
+
