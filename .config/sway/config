@@ -158,6 +158,9 @@ input "10182:500:GDX1515:00_27C6:01F4_Touchpad" tap enable
 
 focus output eDP-1
 
+# layout
+#for_window [class=".*"] split toggle
+
 # turn on daemon for mounting usb devices
 exec "setsid ~/.scripts/automnt > /tmp/automnt 2>&1 < /tmp/automnt &"
 # turn on transmission daemon

@@ -8,7 +8,9 @@ set number relativenumber
 set autoindent
 set smartindent
 
-syntax on 
+set nocompatible
+filetype plugin on
+syntax on
 
 "floating windows colors
 hi NormalFloat term=None guifg=#eeeeee guibg=#333333 ctermfg=255 ctermbg=234
@@ -23,9 +25,11 @@ Plug 'preservim/nerdcommenter'
 
 Plug 'voldikss/vim-floaterm'
 
+Plug 'vim-scripts/ReplaceWithRegister'
+
 Plug 'vimwiki/vimwiki'
 
-Plug 'justinmk/vim-sneak'
+Plug 'easymotion/vim-easymotion'
 
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -33,9 +37,6 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
-Plug 'mhinz/vim-signify'
-Plug 'rhysd/git-messenger.vim'
 
 Plug 'lervag/vimtex'
 
@@ -55,10 +56,16 @@ Plug 'joukevandermaas/vim-ember-hbs'
 
 Plug 'wellle/context.vim'
 
-call plug#end()
+Plug 'rakr/vim-one'
+
+Plug 'bfrg/vim-cpp-modern'
+
+Plug 'metakirby5/codi.vim'
+
+call plug#end() 
 
 "context
-let g:context_enabled = 1
+let g:context_enabled = 0
 
 "floatterm
 let g:floaterm_keymap_toggle = '<Leader>t'
@@ -83,12 +90,6 @@ nnoremap <C-g> :Goyo<cr>
 let g:airline_powerline_fonts = 1
 let g:airline_theme='deus'
 
-"vim-signify
-highlight DiffAdd ctermfg=2 ctermbg=NONE
-highlight DiffDelete ctermfg=1  ctermbg=NONE
-highlight DiffChange ctermfg=4  ctermbg=NONE
-highlight clear SignColumn
-
 "vimtex
 let g:tex_flavor = 'latex'
 
@@ -96,25 +97,58 @@ let g:tex_flavor = 'latex'
 highlight ALEWarning ctermbg=8
 
 nnoremap gd :ALEGoToDefinition<CR>
-nnoremap gt :ALEGoToTypeDefinition<CR>
+
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
-let g:ale_linters = {'cpp' : ['clangd', 'clang-tidy'], 'tex' : ['chktex'], 'python' : ['pyls', 'flake8'], 'javascript' : ['eslint'], 'handlebars' : ['ember-template-lint']}
-let g:ale_fixers = {'cpp' : ['clang-format'], 'c' : ['clang-format'], 'python' : ['black', 'isort'], 'javascript' : ['prettier', 'eslint'], 'tex' : ['latexindent']}
-let g:ale_fix_on_save = 1
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
-let g:ale_c_clangformat_options = "--style=\"{BasedOnStyle: llvm, IndentWidth: 4, PointerAlignment: Left}\""
+let g:ale_linters = {
+    \'cpp' : ['clangd', 'clang-tidy'],
+    \'tex' : ['chktex'],
+    \'python' : ['pyls', 'flake8'],
+    \'javascript' : ['eslint'],
+    \'handlebars' : ['ember-template-lint'],
+    \'rust' : ['analyzer'],
+    \}
+let g:ale_fixers = {
+    \'cpp' : ['clang-format'],
+    \'c' : ['clang-format'],
+    \'python' : ['black', 'isort'],
+    \'javascript' : ['prettier', 'eslint'],
+    \'tex' : ['latexindent'],
+    \'rust' : ['rustfmt'],
+    \}
 
+let g:ale_c_clangformat_options = "--style=\"{BasedOnStyle: llvm, IndentWidth: 4, PointerAlignment: Left, ColumnLimit: 0}\""
 let g:ale_cpp_clang_options = '--clang-tidy --clang-tidy-checks="*"'
+
 let g:ale_linters_explicit = 1
 let g:airline#extensions#ale#enabled = 1
 let g:ale_completion_enabled = 1
-
+let g:ale_fix_on_save = 1
 let g:ale_lint_on_text_changed = 'insert'
+
+highlight clear SignColumn
+
+"vimwiki
+let g:vimwiki_list = [{'path':'~/vimwiki'}]
+
+hi VimwikiHeader1 ctermfg=255 cterm=bold
+hi VimwikiHeader2 ctermfg=200 cterm=bold
+hi VimwikiHeader3 ctermfg=4 cterm=bold
+hi VimwikiHeader4 ctermfg=11 cterm=bold
+hi VimwikiHeader5 ctermfg=10 cterm=bold
+hi VimwikiHeader6 ctermfg=8 cterm=bold
 
 "miscellaneous
 set guicursor=
 
 nnoremap <esc> :noh<return><esc>
 
+nnoremap <C-l> :tabn<CR>
+nnoremap <C-h> :tabp<CR>
+nnoremap <Leader>n :tabe<CR>
+
+map Q <Nop>
