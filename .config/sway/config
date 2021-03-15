@@ -131,7 +131,7 @@ bindsym $mod+Shift+w exec "~/.scripts/scrwnd"
 bindsym $mod+Shift+Ctrl+w exec "~/.scripts/scrwndclp"
 
 # custom scripts
-bindsym $mod+Q exec "~/.scripts/picker downloads/series 'find episode'"
+bindsym $mod+Q exec "brave" # -enable-features=UseOzonePlatform -ozone-platform=wayland"
 
 # brightness hotkeys
 bindsym XF86MonBrightnessUp exec light -A 5
