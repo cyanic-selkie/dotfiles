@@ -151,4 +151,17 @@ nnoremap <C-l> :tabn<CR>
 nnoremap <C-h> :tabp<CR>
 nnoremap <Leader>n :tabe<CR>
 
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+nnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
+vnoremap <Left> <Nop>
+vnoremap <Right> <Nop>
+vnoremap <Up> <Nop>
+vnoremap <Down> <Nop>
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
+inoremap <Up> <Nop>
+inoremap <Down> <Nop>
+
 map Q <Nop>
