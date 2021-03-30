@@ -19,6 +19,8 @@ hi PmenuSel term=None guifg=#80a0ff guibg=#333333 ctermfg=14 ctermbg=234
 
 call plug#begin(stdpath('data') . '/plugged')
 
+Plug 'ekalinin/Dockerfile.vim'
+
 Plug 'junegunn/fzf.vim'
 
 Plug 'preservim/nerdcommenter'
