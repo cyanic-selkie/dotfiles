@@ -109,7 +109,7 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 let g:ale_linters = {
     \'cpp' : ['clangd', 'clang-tidy'],
     \'tex' : ['chktex'],
-    \'python' : ['pyls', 'flake8'],
+    \'python' : ['pyls', 'flake8', 'mypy'],
     \'javascript' : ['eslint'],
     \'handlebars' : ['ember-template-lint'],
     \'rust' : ['analyzer'],
@@ -123,7 +123,11 @@ let g:ale_fixers = {
     \'rust' : ['rustfmt'],
     \}
 
+let g:ale_python_flake8_options = "--max-line-length 88"
+let g:ale_python_isort_options = "--wl 88 --tc --multi-line 3 --up -n --fgw"
+
 let g:ale_c_clangformat_options = "--style=\"{BasedOnStyle: llvm, IndentWidth: 4, PointerAlignment: Left, ColumnLimit: 0}\""
+
 let g:ale_cpp_clang_options = '--clang-tidy --clang-tidy-checks="*"'
 
 let g:ale_linters_explicit = 1
@@ -131,8 +135,6 @@ let g:airline#extensions#ale#enabled = 1
 let g:ale_completion_enabled = 1
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_text_changed = 'insert'
-
-highlight clear SignColumn
 
 "vimwiki
 let g:vimwiki_list = [{'path':'~/vimwiki'}]
@@ -167,3 +169,5 @@ inoremap <Up> <Nop>
 inoremap <Down> <Nop>
 
 map Q <Nop>
+
+highlight clear SignColumn
