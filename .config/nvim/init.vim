@@ -52,6 +52,8 @@ Plug 'ryanoasis/vim-devicons'
 
 Plug 'tikhomirov/vim-glsl'
 
+Plug 'cespare/vim-toml'
+
 Plug 'dag/vim-fish'
 
 Plug 'joukevandermaas/vim-ember-hbs'
@@ -124,7 +126,8 @@ let g:ale_fixers = {
     \}
 
 let g:ale_python_flake8_options = "--max-line-length 88"
-let g:ale_python_isort_options = "--wl 88 --tc --multi-line 3 --up -n --fgw"
+let g:ale_python_black_options = "--experimental-string-processing"
+let g:ale_python_isort_options = "-l 88 --tc --multi-line 3 --up -n --fgw 0"
 
 let g:ale_c_clangformat_options = "--style=\"{BasedOnStyle: llvm, IndentWidth: 4, PointerAlignment: Left, ColumnLimit: 0}\""
 
