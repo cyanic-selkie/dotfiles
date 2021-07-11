@@ -1,31 +1,25 @@
+" tabs
 set expandtab
-set softtabstop=-1
+set softtabstop=4
 set tabstop=4
-set shiftwidth=0
+set shiftwidth=4
 
+"miscellaneous
 set number relativenumber
 
-set autoindent
-set smartindent
+set guicursor=
 
-set nocompatible
-filetype plugin on
-syntax on
-
-"floating windows colors
-hi NormalFloat term=None guifg=#eeeeee guibg=#333333 ctermfg=255 ctermbg=234
-hi Pmenu term=None guifg=#eeeeee guibg=#333333 ctermfg=255 ctermbg=234
-hi PmenuSel term=None guifg=#80a0ff guibg=#333333 ctermfg=14 ctermbg=234
+nnoremap <esc> :noh<return><esc>
 
 call plug#begin(stdpath('data') . '/plugged')
 
-Plug 'ekalinin/Dockerfile.vim'
+Plug 'dense-analysis/ale'
 
-Plug 'junegunn/fzf.vim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 Plug 'preservim/nerdcommenter'
-
-Plug 'voldikss/vim-floaterm'
 
 Plug 'vim-scripts/ReplaceWithRegister'
 
@@ -33,131 +27,93 @@ Plug 'vimwiki/vimwiki'
 
 Plug 'easymotion/vim-easymotion'
 
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'lervag/vimtex'
-
 Plug 'junegunn/goyo.vim'
-
-Plug 'dense-analysis/ale'
 
 Plug 'tpope/vim-surround'
 
-Plug 'ryanoasis/vim-devicons'
-
 Plug 'tikhomirov/vim-glsl'
 
-Plug 'cespare/vim-toml'
+Plug 'lervag/vimtex'
 
-Plug 'dag/vim-fish'
-
-Plug 'joukevandermaas/vim-ember-hbs'
-
-Plug 'wellle/context.vim'
-
-Plug 'rakr/vim-one'
-
-Plug 'bfrg/vim-cpp-modern'
+Plug 'morhetz/gruvbox'
 
 Plug 'metakirby5/codi.vim'
 
-call plug#end() 
+Plug 'neovim/nvim-lspconfig'
 
-"context
-let g:context_enabled = 0
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-"floatterm
-let g:floaterm_keymap_toggle = '<Leader>t'
+Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
+
+Plug 'ray-x/lsp_signature.nvim'
+Plug 'p00f/nvim-ts-rainbow'
+
+call plug#end()
+
+"colors
+let g:gruvbox_italics = 1
+colorscheme gruvbox
 
 "sneak
 let g:sneak#label = 1
 
-"fzf
-map <SPACE> :Files<CR>
-map <A-s> :BLines<CR>
-map <A-r> :Rg<CR>
-
-"nerdtree
-map <C-t> :NERDTreeToggle<CR>
-
 "goyo
 let g:goyo_width = 150
-
 nnoremap <C-g> :Goyo<cr>
 
 "statusbar powerline visuals
 let g:airline_powerline_fonts = 1
-let g:airline_theme='deus'
-
-"vimtex
-let g:tex_flavor = 'latex'
-
-"ale
-highlight ALEWarning ctermbg=8
-
-nnoremap gd :ALEGoToDefinition<CR>
-
-inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
-let g:ale_linters = {
-    \'cpp' : ['clangd', 'clang-tidy'],
-    \'tex' : ['chktex'],
-    \'python' : ['pyls', 'flake8', 'mypy'],
-    \'javascript' : ['eslint'],
-    \'handlebars' : ['ember-template-lint'],
-    \'rust' : ['analyzer'],
-    \}
-let g:ale_fixers = {
-    \'cpp' : ['clang-format'],
-    \'c' : ['clang-format'],
-    \'python' : ['black', 'isort'],
-    \'javascript' : ['prettier', 'eslint'],
-    \'tex' : ['latexindent'],
-    \'rust' : ['rustfmt'],
-    \}
-
-let g:ale_python_flake8_options = "--max-line-length 88"
-let g:ale_python_black_options = "--experimental-string-processing"
-let g:ale_python_isort_options = "-l 88 --tc --multi-line 3 --up -n --fgw 0"
-
-let g:ale_c_clangformat_options = "--style=\"{BasedOnStyle: llvm, IndentWidth: 4, PointerAlignment: Left, ColumnLimit: 0}\""
-
-let g:ale_cpp_clang_options = '--clang-tidy --clang-tidy-checks="*"'
-
-let g:ale_linters_explicit = 1
-let g:airline#extensions#ale#enabled = 1
-let g:ale_completion_enabled = 1
-let g:ale_fix_on_save = 1
-let g:ale_lint_on_text_changed = 'insert'
+let g:airline_theme='gruvbox'
 
 "vimwiki
 let g:vimwiki_list = [{'path':'~/vimwiki'}]
 
-hi VimwikiHeader1 ctermfg=255 cterm=bold
-hi VimwikiHeader2 ctermfg=200 cterm=bold
-hi VimwikiHeader3 ctermfg=4 cterm=bold
-hi VimwikiHeader4 ctermfg=11 cterm=bold
-hi VimwikiHeader5 ctermfg=10 cterm=bold
-hi VimwikiHeader6 ctermfg=8 cterm=bold
+"lua modules
+:lua require('lsp')
+:lua require('autocomplete')
+:lua require('syntax')
 
-"miscellaneous
-set guicursor=
+"auto format on write
+autocmd BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 100)
 
-nnoremap <esc> :noh<return><esc>
+"ale fixers
+let g:ale_fixers = {
+    \'*': ['remove_trailing_lines', 'trim_whitespace'],
+    \'cpp' : ['clang-format'],
+    \'python' : ['black', 'isort'],
+    \'tex' : ['latexindent'],
+    \'rust' : ['rustfmt'],
+\}
 
+let g:ale_python_black_options = "--experimental-string-processing"
+let g:ale_python_isort_options = "-l 88 --tc --multi-line 3 --up -n --fgw 0"
+
+let g:ale_linters_explicit = 1
+let g:ale_fix_on_save = 1
+
+"vimtex
+let g:vimtex_view_method = 'zathura'
+
+"telescope
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope current_buffer_fuzzy_find<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap fr <cmd>Telescope lsp_references<cr>
+nnoremap gd <cmd>Telescope lsp_definitions<cr>
+nnoremap ca <cmd>Telescope lsp_code_actions<cr>
+
+"tab hotkeys
 nnoremap <C-l> :tabn<CR>
 nnoremap <C-h> :tabp<CR>
 nnoremap <Leader>n :tabe<CR>
 
+"disable arrow keys
 nnoremap <Left> <Nop>
 nnoremap <Right> <Nop>
 nnoremap <Up> <Nop>
@@ -171,6 +127,5 @@ inoremap <Right> <Nop>
 inoremap <Up> <Nop>
 inoremap <Down> <Nop>
 
+"disable Q
 map Q <Nop>
-
-highlight clear SignColumn
